@@ -6,10 +6,14 @@ public class MossGiant : Enemy
 {
     private Vector3 _currentTarget;
     private Animator _animator;
+
+    private SpriteRenderer sp;
+
     public void Start()
     {
         transform.position = pointA.position;
         _animator = GetComponent<Animator>();
+        sp = GetComponent<SpriteRenderer>();
 
     }
     // Start is called before the first frame update
@@ -17,17 +21,9 @@ public class MossGiant : Enemy
     {
         if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            Debug.Log("Idling");
-
             return;
         }
-        else
-        {
-            Debug.Log("Move");
-            Movement();
-
-        }
-        //if idle animation, return
+        Movement();
 
     }
 
@@ -36,12 +32,14 @@ public class MossGiant : Enemy
         if (transform.position == pointA.position)
         {
             Debug.Log("At Point A");
+            sp.flipX = false;
             _animator.SetBool("Idle", true);
             _currentTarget = pointB.position;
         }
         else if (transform.position == pointB.position)
         {
             Debug.Log("At Point B");
+            sp.flipX = true;
             _animator.SetBool("Idle", true);
             _currentTarget = pointA.position;
         }
