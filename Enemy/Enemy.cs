@@ -7,7 +7,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField]
     protected int health;
     [SerializeField]
-    protected int speed;
+    protected float speed;
     [SerializeField]
     protected int gems; //only inherited classes can modify, outside scripts cannot see it (private)
     [SerializeField]
