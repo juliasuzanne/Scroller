@@ -13,10 +13,9 @@ public class MossGiant : Enemy
     // Start is called before the first frame update
     public override void Update()
     {
-        float step = speed * Time.deltaTime;
         if (A == true)
         {
-            transform.position = Vector3.MoveTowards(transform.position, pointB.position, speed);
+            transform.position = Vector3.MoveTowards(transform.position, pointB.position, speed * Time.deltaTime);
             if (transform.position == pointB.position)
             {
                 A = false;
@@ -24,20 +23,12 @@ public class MossGiant : Enemy
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, pointA.position, speed);
+            transform.position = Vector3.MoveTowards(transform.position, pointA.position, speed * Time.deltaTime);
             if (transform.position == pointA.position)
             {
                 A = true;
             }
         }
-        // move towards
-        // lerp
-        // if current pos = pointA
-        // move to pointB
-        // else if current position = pointB,
-        // move to pointA
-
-
 
     }
 }
