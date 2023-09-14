@@ -4,31 +4,32 @@ using UnityEngine;
 
 public class MossGiant : Enemy
 {
-    private bool atPointA = true;
-
+    private Vector3 _currentTarget;
     public void Start()
     {
-        atPointA = true;
+        transform.position = pointA.position;
     }
     // Start is called before the first frame update
     public override void Update()
     {
-        if (atPointA == true)
+        Movement();
+
+    }
+
+    void Movement()
+    {
+        if (transform.position == pointA.position)
         {
-            transform.position = Vector3.MoveTowards(transform.position, pointB.position, speed * Time.deltaTime);
-            if (transform.position == pointB.position)
-            {
-                atPointA = false;
-            }
+            Debug.Log("At Point A");
+            _currentTarget = pointB.position;
         }
-        else
+        else if (transform.position == pointB.position)
         {
-            transform.position = Vector3.MoveTowards(transform.position, pointA.position, speed * Time.deltaTime);
-            if (transform.position == pointA.position)
-            {
-                atPointA = true;
-            }
+            Debug.Log("At Point B");
+            _currentTarget = pointA.position;
         }
+
+        transform.position = Vector3.MoveTowards(transform.position, _currentTarget, speed * Time.deltaTime);
 
     }
 }
