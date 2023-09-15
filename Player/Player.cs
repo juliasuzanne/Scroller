@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
+    [SerializeField]
+    private int diamonds = 0;
     [SerializeField]
     private float h_speed = 1;
     [SerializeField]
@@ -27,7 +28,7 @@ public class Player : MonoBehaviour
         _playeranim = gameObject.GetComponent<PlayerAnimation>();
         _playersprite = this.gameObject.GetComponentInChildren<SpriteRenderer>();
 
-        if(_playersprite == null)
+        if (_playersprite == null)
         {
             Debug.Log("The sprite renderer is NULL");
         }
@@ -40,7 +41,7 @@ public class Player : MonoBehaviour
     {
         CheckGrounded();
         PlayerMove();
-        
+
 
         //instead of transform translate, modify velocity of player
         //horizontal input for left and right
@@ -49,34 +50,39 @@ public class Player : MonoBehaviour
     }
 
 
-    void CheckGrounded(){
-    RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 1.0f, 1 << 8);
-    Debug.DrawRay(transform.position, -Vector2.up, Color.red);
+    void CheckGrounded()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 1.0f, 1 << 8);
+        Debug.DrawRay(transform.position, -Vector2.up, Color.red);
 
-    if (hit.collider != null) {
-        float distance = Mathf.Abs(hit.point.y - transform.position.y);
-        // Debug.Log("distance " + distance);
-        _grounded = true;
-        _playeranim.Jump(_grounded);
+        if (hit.collider != null)
+        {
+            float distance = Mathf.Abs(hit.point.y - transform.position.y);
+            // Debug.Log("distance " + distance);
+            _grounded = true;
+            _playeranim.Jump(_grounded);
 
+        }
+        else
+        {
+            _grounded = false;
+            _playeranim.Jump(_grounded);
+
+        }
     }
-    else {
-        _grounded = false;
-        _playeranim.Jump(_grounded);
 
-    }
-    }
-
-    void PlayerMove(){
+    void PlayerMove()
+    {
         float horizontal = Input.GetAxisRaw("Horizontal"); //provides inputs, raw makes binary not float
         FlipPlayer();
-        
+
         Debug.Log(horizontal);
 
 
         _rigb.velocity = new Vector2(horizontal * h_speed, _rigb.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.Space)  &&  _grounded == true){
+        if (Input.GetKeyDown(KeyCode.Space) && _grounded == true)
+        {
             Debug.Log("space key down");
             _rigb.velocity = new Vector2(_rigb.velocity.x * h_speed, _jumpForce);
         }
@@ -84,14 +90,22 @@ public class Player : MonoBehaviour
         _playeranim.Move(horizontal);
     }
 
-    void FlipPlayer(){
-        if (_rigb.velocity.x > 0f){
+    void FlipPlayer()
+    {
+        if (_rigb.velocity.x > 0f)
+        {
             _playersprite.flipX = false;
             Debug.Log("not flipped");
         }
-        else if (_rigb.velocity.x < -0f) {
+        else if (_rigb.velocity.x < -0f)
+        {
             _playersprite.flipX = true;
             Debug.Log("flipped");
         }
+    }
+
+    public void AddDiamonds(int diamondsToAdd)
+    {
+        diamonds = diamonds + diamondsToAdd;
     }
 }
