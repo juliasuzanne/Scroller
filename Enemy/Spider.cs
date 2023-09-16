@@ -13,7 +13,7 @@ public class Spider : Enemy, IDamageable
   }
   public void Damage()
   {
-
+    Debug.Log("Damage");
   }
 }
 
