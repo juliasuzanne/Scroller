@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     private PlayerAnimation _playeranim;
     [SerializeField]
     private SpriteRenderer _playersprite;
+    private Transform _hitBox;
 
 
     //get reference to rigidbody
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
         //assign handle of rigidbody
         _rigb = gameObject.GetComponent<Rigidbody2D>();
         _playeranim = gameObject.GetComponent<PlayerAnimation>();
+        _hitBox = this.gameObject.transform.GetChild(0).transform;
         _playersprite = this.gameObject.GetComponentInChildren<SpriteRenderer>();
 
         if (_playersprite == null)
@@ -57,7 +59,7 @@ public class Player : MonoBehaviour
     void CheckGrounded()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 1.0f, 1 << 8);
-        Debug.DrawRay(transform.position, -Vector2.up, Color.red);
+        Debug.DrawRay(transform.position, -Vector2.up, Color.green);
 
         if (hit.collider != null)
         {
@@ -96,15 +98,20 @@ public class Player : MonoBehaviour
 
     void FlipPlayer()
     {
+        Debug.Log(_hitBox.name);
+
         if (_rigb.velocity.x > 0.1f)
         {
-            _playersprite.flipX = false;
-            Debug.Log("not flipped");
+            // _playersprite.flipX = false;
+            // Debug.Log("not flipped");
+            _hitBox.eulerAngles = new Vector3(0, 0, 0);
         }
         else if (_rigb.velocity.x < -0.1f)
         {
-            _playersprite.flipX = true;
-            Debug.Log("flipped");
+            // _playersprite.flipX = true;
+            // Debug.Log("flipped");
+            _hitBox.eulerAngles = new Vector3(0, 180, 0);
+
         }
     }
 
