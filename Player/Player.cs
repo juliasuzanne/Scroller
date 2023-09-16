@@ -41,7 +41,11 @@ public class Player : MonoBehaviour
     {
         CheckGrounded();
         PlayerMove();
-
+        if (_grounded == true && Input.GetMouseButtonDown(0) == true)
+        {
+            Attack();
+        }
+        //if left click, attack
 
         //instead of transform translate, modify velocity of player
         //horizontal input for left and right
@@ -92,20 +96,28 @@ public class Player : MonoBehaviour
 
     void FlipPlayer()
     {
-        if (_rigb.velocity.x > 0f)
+        if (_rigb.velocity.x > 0.1f)
         {
             _playersprite.flipX = false;
             Debug.Log("not flipped");
         }
-        else if (_rigb.velocity.x < -0f)
+        else if (_rigb.velocity.x < -0.1f)
         {
             _playersprite.flipX = true;
             Debug.Log("flipped");
         }
     }
 
+
+
     public void AddDiamonds(int diamondsToAdd)
     {
         diamonds = diamonds + diamondsToAdd;
+    }
+
+    private void Attack()
+    {
+        _playeranim.Attack();
+
     }
 }

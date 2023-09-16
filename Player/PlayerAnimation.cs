@@ -18,17 +18,24 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void Move(float move){
+    public void Move(float move)
+    {
         move = Mathf.Abs(move);
-         _anim.SetFloat("Move", move);
+        _anim.SetFloat("Move", move);
 
     }
 
-    public void Jump(bool jump){
-            _anim.SetBool("Jumping", !jump);
-        }
-    
+    public void Jump(bool jump)
+    {
+        _anim.SetBool("Jumping", !jump);
+    }
+
+    public void Attack()
+    {
+        _anim.SetTrigger("Attack");
+    }
+
 }

@@ -23,6 +23,10 @@ public class Diamond : MonoBehaviour
             _player.AddDiamonds(numToAdd);
             Destroy(this.gameObject);
         }
+        else
+        {
+            return;
+        }
     }
     // check for the player
     // add the value of the diamond to the player
