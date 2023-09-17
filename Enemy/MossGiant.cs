@@ -17,6 +17,14 @@ public class MossGiant : Enemy, IDamageable
     {
         Debug.Log("Damage");
 
+        Debug.Log("Health is at " + Health);
+        Health = Health - 1;
+        if (Health < 1)
+        {
+            Destroy(this.gameObject);
+        }
+
+        animator.SetTrigger("Hit");
     }
 
 }
