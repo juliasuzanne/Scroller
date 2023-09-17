@@ -16,11 +16,15 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField]
     protected Transform pointA, pointB; //waypoints for AI behavior
     protected bool isHit = false;
+    private Transform player;
+    private float distance;
+    //player stored variable
 
     public virtual void Init()
     {
         transform.position = pointA.position;
         animator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         sp = GetComponent<SpriteRenderer>();
     }
     public virtual void Attack() //virtual keyword allows for functino to be rewritten
@@ -30,9 +34,16 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void Update()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && !animator.GetBool("InCombat"))
         {
             return;
+        }
+        distance = Mathf.Abs(transform.position.x - player.position.x);
+
+        if (distance > 5)
+        {
+            isHit = false;
+            animator.SetBool("InCombat", false);
         }
         Movement();
     }
@@ -72,6 +83,13 @@ public abstract class Enemy : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
         }
+
+        // Debug.Log("Distance is " + distance + "from player");
+
+        //check for distance between player and enemy
+        //if greater than 2 units
+        //isHit = false
+        //InCombat = false
 
     }
 
