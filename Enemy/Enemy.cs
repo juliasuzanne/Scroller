@@ -38,14 +38,9 @@ public abstract class Enemy : MonoBehaviour
         {
             return;
         }
-        distance = Mathf.Abs(transform.position.x - player.position.x);
 
-        if (distance > 5)
-        {
-            isHit = false;
-            animator.SetBool("InCombat", false);
-        }
         Movement();
+
     }
 
     public void Start()
@@ -83,13 +78,15 @@ public abstract class Enemy : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
         }
+        distance = Mathf.Abs(transform.position.x - player.position.x);
 
-        // Debug.Log("Distance is " + distance + "from player");
+        if (distance > 5)
+        {
+            isHit = false;
+            animator.SetBool("InCombat", false);
+        }
 
-        //check for distance between player and enemy
-        //if greater than 2 units
-        //isHit = false
-        //InCombat = false
+
 
     }
 
