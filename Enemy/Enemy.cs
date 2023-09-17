@@ -15,6 +15,7 @@ public abstract class Enemy : MonoBehaviour
     protected int gems; //only inherited classes can modify, outside scripts cannot see it (private)
     [SerializeField]
     protected Transform pointA, pointB; //waypoints for AI behavior
+    protected bool isHit = false;
 
     public virtual void Init()
     {
@@ -67,7 +68,10 @@ public abstract class Enemy : MonoBehaviour
             currentTarget = pointA.position;
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
+        if (isHit == false)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
+        }
 
     }
 
