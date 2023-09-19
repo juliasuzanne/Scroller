@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     [SerializeField]
     private int diamonds = 0;
+    [SerializeField]
+    public int Health { get; set; }
     [SerializeField]
     private float h_speed = 1;
     [SerializeField]
@@ -126,5 +128,10 @@ public class Player : MonoBehaviour
     {
         _playeranim.Attack();
 
+    }
+
+    public void Damage()
+    {
+        Debug.Log("Player Damaged");
     }
 }

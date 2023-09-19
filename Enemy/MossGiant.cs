@@ -35,7 +35,7 @@ public class MossGiant : Enemy, IDamageable
         base.Movement();
 
         Vector3 direction = player.transform.localPosition - transform.localPosition;
-        Debug.Log("Side is " + direction.x);
+        // Debug.Log("Side is " + direction.x);
 
         if (animator.GetBool("InCombat") == true && direction.x > 0)
         {
