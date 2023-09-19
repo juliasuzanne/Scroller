@@ -16,7 +16,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField]
     protected Transform pointA, pointB; //waypoints for AI behavior
     protected bool isHit = false;
-    private Transform player;
+    protected Transform player;
     private float distance;
     //player stored variable
 
@@ -52,13 +52,13 @@ public abstract class Enemy : MonoBehaviour
     {
         if (currentTarget == pointA.position)
         {
-            sp.flipX = true;
+            transform.eulerAngles = new Vector3(0, 180, 0);
 
         }
 
         else if (currentTarget == pointB.position)
         {
-            sp.flipX = false;
+            transform.eulerAngles = new Vector3(0, 0, 0);
 
         }
         if (transform.position == pointA.position)
@@ -78,6 +78,7 @@ public abstract class Enemy : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
         }
+
         distance = Mathf.Abs(transform.position.x - player.position.x);
 
         if (distance > 5)

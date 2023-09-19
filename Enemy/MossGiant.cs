@@ -27,6 +27,26 @@ public class MossGiant : Enemy, IDamageable
         animator.SetTrigger("Hit");
         isHit = true;
         animator.SetBool("InCombat", true);
+
+    }
+
+    public override void Movement()
+    {
+        base.Movement();
+
+        Vector3 direction = player.transform.localPosition - transform.localPosition;
+        Debug.Log("Side is " + direction.x);
+
+        if (animator.GetBool("InCombat") == true && direction.x > 0)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+
+        }
+        else if (animator.GetBool("InCombat") && direction.x < 0)
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+
+        }
     }
 
 }
