@@ -50,6 +50,22 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void Movement()
     {
+
+        //change direction in combat
+        Vector3 direction = player.transform.localPosition - transform.localPosition;
+
+        if (animator.GetBool("InCombat") == true && direction.x > 0)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+
+        }
+        else if (animator.GetBool("InCombat") && direction.x < 0)
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+
+        }
+
+        //ai movement path
         if (currentTarget == pointA.position)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
@@ -79,6 +95,7 @@ public abstract class Enemy : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
         }
 
+        //Checking when to reset incombat mode
         distance = Mathf.Abs(transform.position.x - player.position.x);
 
         if (distance > 5)
@@ -89,6 +106,7 @@ public abstract class Enemy : MonoBehaviour
 
 
     }
+
 
 
 }

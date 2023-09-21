@@ -13,6 +13,18 @@ public class Skeleton : Enemy, IDamageable
     }
     public void Damage()
     {
+        Debug.Log("Damage");
+        Debug.Log("Health is at " + Health);
+        Health = Health - 1;
+        if (Health < 1)
+        {
+            Destroy(this.gameObject);
+        }
+
+        animator.SetTrigger("Hit");
+        isHit = true;
+        animator.SetBool("InCombat", true);
 
     }
+
 }

@@ -16,7 +16,6 @@ public class MossGiant : Enemy, IDamageable
     public void Damage()
     {
         Debug.Log("Damage");
-
         Debug.Log("Health is at " + Health);
         Health = Health - 1;
         if (Health < 1)
@@ -28,25 +27,6 @@ public class MossGiant : Enemy, IDamageable
         isHit = true;
         animator.SetBool("InCombat", true);
 
-    }
-
-    public override void Movement()
-    {
-        base.Movement();
-
-        Vector3 direction = player.transform.localPosition - transform.localPosition;
-        // Debug.Log("Side is " + direction.x);
-
-        if (animator.GetBool("InCombat") == true && direction.x > 0)
-        {
-            transform.eulerAngles = new Vector3(0, 0, 0);
-
-        }
-        else if (animator.GetBool("InCombat") && direction.x < 0)
-        {
-            transform.eulerAngles = new Vector3(0, 180, 0);
-
-        }
     }
 
 }
