@@ -11,6 +11,11 @@ public class Spider : Enemy, IDamageable
     base.Init();
     Health = base.health;
   }
+
+  public override void Movement()
+  {
+    //sit still
+  }
   public void Damage()
   {
     Debug.Log("Damage");
