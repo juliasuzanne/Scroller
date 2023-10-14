@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class Spider_Event : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Fire()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //tell spider to fire
+        Debug.Log("Spider should fire");
     }
 }
