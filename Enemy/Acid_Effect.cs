@@ -8,7 +8,7 @@ public class Acid_Effect : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine("DestroyAfterSec");
+        Destroy(this.gameObject, 5.0f);
     }
     void Update()
     {
@@ -21,18 +21,23 @@ public class Acid_Effect : MonoBehaviour
         Debug.Log("Collision");
         if (other.gameObject.tag == "Player")
         {
-            player = other.transform.GetComponent<Player>();
-            player.Damage();
-            Debug.Log("Player Collision");
-            Destroy(this.gameObject);
+            // player = other.transform.GetComponent<Player>();
+            // player.Damage();
+            // Debug.Log("Player Collision");
+            IDamageable hit = other.gameObject.transform.GetComponent<IDamageable>();
+            if (hit != null)
+            {
+                hit.Damage();
+                Destroy(this.gameObject);
+            }
         }
     }
 
-    IEnumerator DestroyAfterSec()
-    {
-        yield return new WaitForSeconds(5f);
-        Destroy(this.gameObject);
-    }
+    // IEnumerator DestroyAfterSec()
+    // {
+    //     yield return new WaitForSeconds(5f);
+    //     Destroy(this.gameObject);
+    // }
     //move left at 3m/s
     //detect a hit collision with player, deal damage with idamageable interface
     //destroy after 5s or on collision
