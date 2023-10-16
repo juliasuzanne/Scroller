@@ -20,6 +20,11 @@ public class Spider : Enemy, IDamageable
   {
     Debug.Log("Damage");
   }
+
+  public void Attack()
+  {
+    // instatiate acid effect
+  }
 }
 
 
