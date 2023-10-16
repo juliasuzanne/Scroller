@@ -5,6 +5,8 @@ using UnityEngine;
 public class Spider : Enemy, IDamageable
 {
   public int Health { get; set; }
+  [SerializeField]
+  private GameObject acid_prefab;
   // Use for initialization
   public override void Init()
   {
@@ -23,7 +25,7 @@ public class Spider : Enemy, IDamageable
 
   public void Attack()
   {
-    // instatiate acid effect
+    Instantiate(acid_prefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
   }
 }
 
