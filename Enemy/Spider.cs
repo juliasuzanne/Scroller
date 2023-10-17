@@ -20,6 +20,11 @@ public class Spider : Enemy, IDamageable
   }
   public void Damage()
   {
+    Health = Health - 1;
+    if (Health < 0)
+    {
+      Destroy(this.gameObject);
+    }
     Debug.Log("Damage");
   }
 
