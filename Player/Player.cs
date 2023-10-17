@@ -133,5 +133,6 @@ public class Player : MonoBehaviour, IDamageable
     public void Damage()
     {
         Debug.Log("Player Damaged");
+
     }
 }

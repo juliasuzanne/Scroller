@@ -16,6 +16,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField]
     protected Transform pointA, pointB; //waypoints for AI behavior
     protected bool isHit = false;
+    protected bool isDead = false;
     protected Transform player;
     private float distance;
     //player stored variable
@@ -39,7 +40,11 @@ public abstract class Enemy : MonoBehaviour
             return;
         }
 
-        Movement();
+        if (isDead == false)
+        {
+            Movement();
+
+        }
 
     }
 
