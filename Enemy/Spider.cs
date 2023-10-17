@@ -23,7 +23,8 @@ public class Spider : Enemy, IDamageable
     Health = Health - 1;
     if (Health < 0)
     {
-      Destroy(this.gameObject);
+      animator.SetTrigger("Death");
+      // Destroy(this.gameObject);
     }
     Debug.Log("Damage");
   }
