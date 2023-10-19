@@ -18,16 +18,16 @@ public class Spider : Enemy, IDamageable
   {
     //sit still
   }
-  public void Damage()
-  {
-    Health = Health - 1;
-    if (Health < 0)
-    {
-      animator.SetTrigger("Death");
-      // Destroy(this.gameObject);
-    }
-    Debug.Log("Damage");
-  }
+  // public override void Damage()
+  // {
+  //   Health = Health - 1;
+  //   if (Health < 0)
+  //   {
+  //     animator.SetTrigger("Death");
+  //     // Destroy(this.gameObject);
+  //   }
+  //   Debug.Log("Damage");
+  // }
 
   public void Attack()
   {

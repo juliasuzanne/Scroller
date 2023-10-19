@@ -5,6 +5,10 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
     protected Vector3 currentTarget;
+    protected Vector3 player_pos;
+    [SerializeField]
+    protected GameObject diamonds;
+
     protected Animator animator;
     protected SpriteRenderer sp;
     [SerializeField]
@@ -35,6 +39,7 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void Update()
     {
+        player_pos = transform.position;
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && !animator.GetBool("InCombat"))
         {
             return;
@@ -110,6 +115,34 @@ public abstract class Enemy : MonoBehaviour
         }
 
 
+    }
+
+    public virtual void Damage()
+    {
+        if (isDead == true)
+        {
+            return;
+        }
+        Debug.Log("Damage");
+        Debug.Log("Health is at " + health);
+        health = health - 1;
+        if (health < 1)
+        {
+            isDead = true;
+            for (var i = 0; i < gems; i++)
+            {
+                Instantiate(diamonds, new Vector3(player_pos.x + Random.Range(-1f, 1f), player_pos.y, 0), Quaternion.identity);
+            }
+            animator.SetTrigger("Death");
+            //spawn a diamond
+            //change value of diamond to gem count
+
+            // Destroy(this.gameObject);
+        }
+
+        animator.SetTrigger("Hit");
+        isHit = true;
+        animator.SetBool("InCombat", true);
     }
 
 
