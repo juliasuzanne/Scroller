@@ -1,15 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopKeeper : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    private GameObject _panel;
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
             Debug.Log("Player Entered Shop");
+            _panel.SetActive(true);
         }
+    }
+    void OnTriggerExit2D()
+    {
+        // _panel.SetActive(false);
     }
 }
