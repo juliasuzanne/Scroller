@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour, IDamageable
 {
     [SerializeField]
-    private int diamonds = 0;
+    public int diamonds = 0;
     [SerializeField]
     public int Health { get; set; }
     [SerializeField]
