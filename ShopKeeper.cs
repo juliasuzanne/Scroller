@@ -16,8 +16,12 @@ public class ShopKeeper : MonoBehaviour
             _panel.SetActive(true);
         }
     }
-    void OnTriggerExit2D()
+    void OnTriggerExit2D(Collider2D other)
     {
-        // _panel.SetActive(false);
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("Player Exited Shop");
+            _panel.SetActive(false);
+        }
     }
 }
