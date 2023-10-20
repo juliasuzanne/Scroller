@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -19,9 +20,11 @@ public class UIManager : MonoBehaviour
 
         }
     }
+    public Text playerGemCountText;
 
     public void Awake()
     {
         _instance = this;
+
     }
 }
