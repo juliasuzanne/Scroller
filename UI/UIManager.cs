@@ -6,15 +6,17 @@ public class UIManager : MonoBehaviour
 {
     //instance run along all classes
     private static UIManager _instance;
-    public static UIManager Instance;
+    public static UIManager Instance
     {
         get
         {
-            if (_instance == nul)
+            if (_instance == null)
             {
                 Debug.LogError("UI Manager is null!");
             }
+
             return _instance;
+
         }
     }
 
