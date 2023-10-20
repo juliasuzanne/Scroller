@@ -22,9 +22,15 @@ public class UIManager : MonoBehaviour
     }
     public Text playerGemCountText;
 
+    public void OpenShop(int gemCount)
+    {
+        playerGemCountText.text = gemCount + "c";
+    }
+
     public void Awake()
     {
         _instance = this;
+
 
     }
 }
