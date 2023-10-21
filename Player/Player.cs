@@ -107,13 +107,14 @@ public class Player : MonoBehaviour, IDamageable
         {
             // _playersprite.flipX = false;
             // Debug.Log("not flipped");
-            _hitBox.eulerAngles = new Vector3(0, 0, 0);
+            _hitBox.eulerAngles = new Vector3(0, 180, 0);
         }
         else if (_rigb.velocity.x < -0.1f)
         {
             // _playersprite.flipX = true;
             // Debug.Log("flipped");
-            _hitBox.eulerAngles = new Vector3(0, 180, 0);
+            _hitBox.eulerAngles = new Vector3(0, 0, 0);
+
 
         }
     }
