@@ -113,6 +113,7 @@ public class Player : MonoBehaviour, IDamageable
         {
             // _playersprite.flipX = true;
             // Debug.Log("flipped");
+            // _hitBox.eulerAngles = new Vector3(0, 0, 0);
             _hitBox.eulerAngles = new Vector3(0, 0, 0);
 
 
