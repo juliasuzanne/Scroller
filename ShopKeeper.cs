@@ -29,4 +29,9 @@ public class ShopKeeper : MonoBehaviour
             _panel.SetActive(false);
         }
     }
+
+    public void SetItem()
+    {
+
+    }
 }
