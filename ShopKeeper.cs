@@ -30,8 +30,23 @@ public class ShopKeeper : MonoBehaviour
         }
     }
 
-    public void SetItem()
+    public void SetItem(int itemID)
     {
 
+        switch (itemID)
+        {
+            case 0:
+                UIManager.Instance.UpdateShopSelection(115f);
+                break;
+            case 1:
+                UIManager.Instance.UpdateShopSelection(39f);
+                break;
+            case 2:
+                UIManager.Instance.UpdateShopSelection(-34f);
+                break;
+            case 3:
+                UIManager.Instance.UpdateShopSelection(-117f);
+                break;
+        }
     }
 }

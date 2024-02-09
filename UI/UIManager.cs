@@ -28,6 +28,11 @@ public class UIManager : MonoBehaviour
         playerGemCountText.text = "" + gemCount + "c";
     }
 
+    public void UpdateShopSelection(float yPos)
+    {
+        selectionImg.rectTransform.anchoredPosition = new Vector2(selectionImg.rectTransform.anchoredPosition.x, yPos);
+    }
+
     public void Awake()
     {
         _instance = this;
