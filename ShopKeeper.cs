@@ -7,6 +7,13 @@ public class ShopKeeper : MonoBehaviour
 {
     [SerializeField]
     private GameObject _panel;
+    private int item;
+    private Player player;
+
+    void Start()
+    {
+        player = GameObject.Find("Player").GetComponent<Player>();
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -32,6 +39,7 @@ public class ShopKeeper : MonoBehaviour
 
     public void SetItem(int itemID)
     {
+        item = itemID;
 
         switch (itemID)
         {
@@ -49,4 +57,75 @@ public class ShopKeeper : MonoBehaviour
                 break;
         }
     }
+
+    public void BuyItem()
+    {
+        switch (item)
+        {
+            case 0:
+                if (CheckGems(30))
+                {
+                    Debug.Log("ADD LETTER");
+                    player.diamonds -= 30;
+                }
+
+                else
+                {
+                    Debug.Log("NOT ENOUGH MONEY");
+                }
+                break;
+            case 1:
+                if (CheckGems(100))
+                {
+                    Debug.Log("ADD SNEAKERS");
+                    player.diamonds -= 100;
+                }
+                else
+                {
+                    Debug.Log("NOT ENOUGH MONEY");
+                }
+                break;
+            case 2:
+                if (CheckGems(2))
+                {
+                    Debug.Log("ADD DUSY BUNNY");
+                    player.diamonds -= 2;
+                }
+                else
+                {
+                    Debug.Log("NOT ENOUGH MONEY");
+                }
+                break;
+            case 3:
+                if (CheckGems(2400))
+                {
+                    Debug.Log("ADD KEY TO CASTLE");
+                    player.diamonds -= 2400;
+                }
+                else
+                {
+                    Debug.Log("NOT ENOUGH MONEY");
+                }
+                break;
+        }
+    }
+
+    public bool CheckGems(int gemCount)
+    {
+        if (player.diamonds >= gemCount)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    //buyitem method
+    //check if player gems is greater than or equal to
+    //award item if yes, subtract cost from player gem
+    //close shop if no
+
+
 }
